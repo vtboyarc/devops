@@ -1,0 +1,14 @@
+version: '3'
+# service aka a container
+services: 
+  redis-server:
+    image: 'redis'
+  node-app:
+    # specifies to always restart the container if it goes down, just for the node-app service
+    restart: always
+    # telling it to look for the Dockerfile in this directory to use that specification 
+    build: . 
+    ports:
+    # - in yaml specifies an array, doing array for ports
+    # only doing one port mapping, but still an item in array
+      - "4001:8081"
