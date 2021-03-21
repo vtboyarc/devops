@@ -9,6 +9,6 @@ services:
     # telling it to look for the Dockerfile in this directory to use that specification 
     build: . 
     ports:
-    # - in yaml specifies an array, doing array for ports
+    # '-' in yaml specifies an array, doing array for ports
     # only doing one port mapping, but still an item in array
       - "4001:8081"
