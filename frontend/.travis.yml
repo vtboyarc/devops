@@ -1,0 +1,24 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t vtboyarc/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true vtboyarc/docker-react npm run test 
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-us-west-2-039268060149"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
